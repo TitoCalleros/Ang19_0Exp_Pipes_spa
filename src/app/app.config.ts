@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { registerLocaleData } from '@angular/common';
 
+import { LocaleService } from './services/locale.service';
 
 import localeES from '@angular/common/locales/es-MX';
 import localeFR from '@angular/common/locales/fr';
@@ -16,10 +17,11 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
 
-    // Inyección del LOCALE_ID mediante un alias
+    // Inyección del LOCALE_ID de manera dinámica, estableciéndolo mediante un getter de un servicio.
     {
       provide: LOCALE_ID,
-      useValue: 'es',
+      deps: [LocaleService],
+      useFactory: (localeService: LocaleService) => localeService.getLocale,
     },
   ]
 };
