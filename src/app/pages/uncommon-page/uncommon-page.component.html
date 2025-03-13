@@ -17,5 +17,32 @@
     <button (click)="removeClient()" [disabled]="clients().length === 0" class="btn btn-primary">Remover cliente</button>
   </app-card>
 
+  <app-card [title]="'Slice Pipe'">
+    <b>Original</b>
+    <p class="text-primary">
+      {{ clients().join(', ') }}
+    </p>
+
+    <b class="mt-2">Slice:0:2</b>
+    <p class="text-primary">
+      {{ clients() | slice:0:2 }}
+    </p>
+
+    <b class="mt-2">Slice:1:2</b>
+    <p class="text-primary">
+      {{ clients() | slice:1:2 }}
+    </p>
+
+    <b class="mt-2">Slice:3:12</b>
+    <p class="text-primary">
+      {{ clients() | slice:3:12 }}
+    </p>
+
+    <b class="mt-2">Slice:0:-3</b>
+    <p class="text-primary">
+      {{ clients() | slice:0:-3 }}
+    </p>
+  </app-card>
+
 
 </div>
