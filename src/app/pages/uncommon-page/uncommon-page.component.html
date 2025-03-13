@@ -85,6 +85,10 @@
     } @else {
       <p class="text-accent">Espere por favor...</p>
     }
+
+    @if ( myObservableTimer | async; as value ) {
+      <p class="text-primary">{{ value }}</p>
+    }
   </app-card>
 
 
