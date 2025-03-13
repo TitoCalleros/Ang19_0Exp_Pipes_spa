@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CardComponent } from "../../components/card/card.component";
-import { I18nPluralPipe, I18nSelectPipe, JsonPipe, KeyValuePipe, SlicePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { AsyncPipe, I18nPluralPipe, I18nSelectPipe, JsonPipe, KeyValuePipe, SlicePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
 
 const client1 = {
   name: 'Tito',
@@ -18,7 +18,7 @@ const client2 = {
 
 @Component({
   selector: 'app-uncommon-page',
-  imports: [CardComponent, I18nSelectPipe, I18nPluralPipe, SlicePipe, JsonPipe, KeyValuePipe, TitleCasePipe],
+  imports: [CardComponent, I18nSelectPipe, I18nPluralPipe, SlicePipe, JsonPipe, KeyValuePipe, TitleCasePipe, AsyncPipe],
   templateUrl: './uncommon-page.component.html',
 })
 export default class UncommonPageComponent {
@@ -63,11 +63,27 @@ export default class UncommonPageComponent {
     this.clients.update( (previous) => previous.slice(1));
   }
 
-  // KeyValuePipe
+  // KeyValue Pipe
   profile = {
     name: 'Dittos',
     age: 25,
     address: 'Ottawa, Canada'
-  }
+  };
 
+  // Async Pipe
+  promiseValue: Promise<string> = new Promise( (resolve, reject) => {
+    setTimeout(() => {
+      resolve('Tenemos data en la promesa.');
+      console.log('Promesa finalizada ');
+
+    }, 3500);
+  });
+
+  promiseValueError: Promise<string> = new Promise( (resolve, reject) => {
+    setTimeout(() => {
+      reject('Tenemos error en la promesa.');
+      console.log('Promesa con error ');
+
+    }, 3500);
+  });
 }
