@@ -47,9 +47,17 @@
         <tr>
           <td>{{ index + 1 }}</td>
           <td>{{ hero.name }}</td>
-          <td>{{ hero.canFly }}</td>
-          <td>{{ hero.canFly }}</td>
-          <td>{{ hero.creator }}</td>
+          <td>
+            <span class="text-xs w-44" [class.text-sucess]="hero.canFly" [class.text-accent]="!hero.canFly">
+              {{ hero.canFly | canFly }}
+            </span>
+          </td>
+          <td>
+            <span class="text-xs w-44" [style.color]="hero.color | heroTextColor">
+              {{ hero.color | heroColor | titlecase }}
+            </span>
+          </td>
+          <td>{{ hero.creator | heroCreator }}</td>
         </tr>
       }
     </tbody>
